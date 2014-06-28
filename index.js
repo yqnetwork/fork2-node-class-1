@@ -5,6 +5,17 @@ var Class = function(properties) {
 			properties[CTOR_NAME].apply(this, arguments);
 		}
 	}
+
+	for (var key in properties) {
+		if(!properties.hasOwnProperty(key)) {
+			continue;
+		}
+		if (key === CTOR_NAME) {
+			continue;
+		}
+		ctor.prototype[key] = properties[key];
+	}
+	
 	return ctor;
 };
 
